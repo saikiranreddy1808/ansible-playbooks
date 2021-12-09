@@ -1,0 +1,32 @@
+---
+- name: update app servers
+  hosts: n2
+  become: yes
+
+  tasks:
+  - name: ensure apache http installed
+    yum:
+      name: httpd
+      state: installed
+  
+  - name: ensure apche http started
+    service:
+       name: httpd
+       state: started
+
+  - name: ensure apache http enabled
+    service:
+       name: httpd
+       enabled: yes
+
+  - name: Ensure Git Installed
+    yum:
+      name: git
+      state: installed
+
+  - name: Ensure mynthra updated
+    git:
+      repo: https://github.com/ravi2krishna/food.git
+      dest: /var/www/html
+
+...
