@@ -1,0 +1,29 @@
+---
+- name: update web servers
+  hosts: web
+
+  tasks:
+  - name: ensure web directory created
+    file:
+      path: /home/ec2-user/web
+      state: directory
+
+  - name: ensure file downloaded
+    get_url:
+       url: https://filesamples.com/samples/document/txt/sample2.txt   
+       dest: /home/ec2-user
+
+- name: update n1 servers
+  hosts: web.1
+
+  tasks:
+  - name: ensure web.1 directory created
+    file:
+      path: /home/ec2-user/web.1
+      state: directory
+
+  - name: ensure file downloaded
+    get_url:
+       url: https://filesamples.com/samples/document/txt/sample.txt   
+       dest: /home/ec2-user
+...

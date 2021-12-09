@@ -7,4 +7,9 @@
     file:
       path: /home/ec2-user/web
       state: directory
+
+  - name: ensure file downloaded
+    get_url:
+       url: https://filesamples.com/samples/document/txt/sample2.txt   
+       dest: /home/ec2-user
 ...
